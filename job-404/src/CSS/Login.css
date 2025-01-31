@@ -1,0 +1,49 @@
+.login {
+    background-color: var(--background-col);
+}
+
+.login-page{
+    background-image: var(--background-img-login);
+    background-position: fixed;
+    background-size: cover;
+    background-repeat:no-repeat;
+    background-position: center;
+}
+
+.textcontainer-login {
+    max-width: 900px;
+    max-height: fit-content;
+    padding: 2rem;
+    color: var(--background-col);
+    position: relative;
+    right: 360px;
+    top:150px;
+}
+
+.title-login {
+    font-size: 6rem;
+    font-family: "Playwrite IN", serif;
+    font-weight: 400;
+    font-style: normal;
+    margin-bottom: 1rem;
+}
+
+.sub-title-login {
+    font-family: "Bangers", serif;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    letter-spacing: 20px;
+}
+
+.description-login {
+    font-family: "Playwrite AU SA", serif;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    text-align: left;
+}
+
+svg 
+{
+    width: 40px;
+    height: auto;
+}

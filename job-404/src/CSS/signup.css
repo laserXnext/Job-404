@@ -1,0 +1,129 @@
+.container {
+    display: flex;
+    gap: 2rem;
+    backdrop-filter: blur(6px);
+    background-color: rgba(255, 255, 255, 0.3); 
+    -webkit-backdrop-filter: blur(6px);
+  }
+  
+.card {
+    background: var(--theme-color-4);
+    padding: 2rem;
+    border-radius: 25px 0 0 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 360px;
+    height: 100vh;
+    position: relative;
+    left:1158px;
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    position: relative;
+    top: 70px;
+}
+
+.signup-form,
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.7rem;
+    position: relative;
+    top: 120px;
+}
+
+.signup-form input,
+.login-form input 
+{
+    padding: 1rem;
+    border: 1px solid var(--background-col);
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+
+.btn {
+    padding: 0.75rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    color: var(--theme-color-4);
+}
+
+.signup {
+    background-color: var(--background-col);
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.text {
+    text-align: center;
+    font-size: 0.875rem;
+}
+
+.google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: var(--theme-color-4);
+    color: var(--theme-color-5);
+    border: 1px solid var(--background-col);
+    border-radius: 8px;
+    padding: 0.75rem;
+    cursor: pointer;
+}
+
+.google-btn img {
+    width: 20px;
+    height: 20px;
+}
+
+.signup-page{
+    background-image: var(--background-img-signup);
+    background-position: fixed;
+    background-size: cover;
+    background-repeat:no-repeat;
+    background-position: center;
+}
+
+.textcontainer {
+    max-width: 800px;
+    max-height: fit-content;
+    padding: 2rem;
+    color: var(--background-col);
+    position: relative;
+    right: 360px;
+    top:120px;
+}
+
+.title {
+    font-size: 6rem;
+    font-family: "Playwrite IN", serif;
+    font-weight: 400;
+    font-style: normal;
+    margin-bottom: 1rem;
+}
+
+.sub-title {
+    font-family: "Bangers", serif;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    letter-spacing: 20px;
+}
+
+.description {
+    font-family: "Playwrite AU SA", serif;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    text-align: left;
+}

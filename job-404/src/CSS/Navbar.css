@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--background-col);
+  padding: 0 50px;
+  height: 60px;
+  width:99%;
+  border-radius: 50px;
+  position: relative;
+  left: 0.5%;
+  top: 10px;
+  flex-wrap: wrap;
+}
+
+.navbar-logo img {
+  max-height: 50px;
+  cursor: pointer;
+}
+
+.navbar-links {
+  display: flex;
+  list-style: none;
+  position: relative;
+  left: 5.5%;
+}
+
+.user-profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+  color: var(--theme-color-3);
+}
+
+.user-profile p {
+  font-size: 1.5rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.user-profile i {
+  font-size: 2.5rem;
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 50%;
+  background-color: var(--theme-color-8);
+}
+
+.navbar-links li {
+  margin: 0 10px;
+}
+
+.navbar-links li a {
+  color: var(--theme-color-3);
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 6px 15px;
+  border-radius: 20px;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.navbar-links li a:hover,
+.navbar-links li a.active {
+  color: var(--background-col);
+  background: var(--theme-color-3);
+}
+
+
+
+@media (max-width: 1000px) {
+  .navbar {
+    padding: 0 40px;
+  }
+}
+
+@media (max-width: 920px) {
+
+  .navbar-links {
+    position: fixed;
+    top: 75px;
+    left: 20px;
+    background: var(--background-col);
+    height: fit-content;
+    width: 30%;
+    text-align: center;
+    display: block;
+    transition: all 0.3s ease;
+    border-radius: 10px 10px 50px 50px;
+  }
+  .navbar-links li {
+    margin: 25px 0;
+  }
+
+  .navbar-links li a {
+    width: 100%;
+    font-size: 20px;
+    display: block;
+    transition: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .navbar-links li a.active,
+  .navbar-links li a:hover {
+    background: none;
+    color: var(--theme-color-1);
+  }
+}
+
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: -1;
+  width: 100%;
+  padding: 0 30px;
+  color: var(--theme-color-5);
+}
+
+.content div {
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.navbar-buttons {
+  display: flex;
+  gap: 10px; 
+}
+
+.navbar-buttons .login-button,
+.navbar-buttons .signup-button {
+  position: relative;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 20px;
+  font-size: 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.navbar-buttons .login-button {
+  background-color: var(--theme-color-1); 
+  color: var(--background-col); 
+}
+
+.navbar-buttons .signup-button {
+  background-color: var(--theme-color-2); 
+  color: var(--background-col); 
+}
+
+.navbar-buttons .login-button:hover,
+.navbar-buttons .signup-button:hover {
+  background-color: var(--theme-color-4); 
+  color: var(--theme-color-5); 
+}
+
+.navbar-buttons .login-button a,
+.navbar-buttons .signup-button a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.navbar-buttons button span {
+  font-family: "Bangers", serif;
+  pointer-events: none; 
+}

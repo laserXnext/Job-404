@@ -1,0 +1,23 @@
+.header_job {
+    text-align: center;
+    max-width: 99%;
+    padding: 0.5%;
+    margin: 5% 0 2% 0;
+}
+
+.header_job h1 {
+    font-size: 4rem;
+    font-family: "Playwrite AU SA", serif;
+    font-optical-sizing: auto;
+    color: var(--theme-color-8);
+    margin-bottom: 10px;
+}
+
+.header_job p {
+    font-size: 1.4rem;
+    font-family: "Comfortaa", serif;
+    font-optical-sizing: auto;
+    line-height: 1.5;
+    color: var(--theme-color-8);
+    margin: 0 8%;
+}

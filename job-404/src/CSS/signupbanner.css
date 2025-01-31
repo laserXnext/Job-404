@@ -1,0 +1,94 @@
+.signupbanner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background: linear-gradient(135deg, var(--theme-color-6), var(--background-col));
+    color: var(--theme-color-4);
+    margin: 2% 1%;
+    height: 600px;
+    width: 98%;
+    padding: 50px;
+    border-radius: 50px;
+}
+
+.signupbanner-text {
+    flex: 1;
+    text-align: left;
+    max-width: 800px;
+}
+
+.signupbanner-text h1 {
+    font-size: 5rem;
+    font-family: "Bangers", serif;
+    font-weight: 400;
+    font-style: normal;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.signupbanner-text p {
+    font-size: 1.5rem;
+    font-family: Verdana, sans-serif;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.signupbanner-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.signupbanner-list li {
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px 20px;
+    border-radius: 25px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.signupbanner-image-section {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.signupbanner-img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.signupbanner-button {
+    padding: 15px 30px;
+    font-family: "Bangers", serif;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    background-color: var(--theme-color-7);
+    color: var(--theme-color-4);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    position: absolute;
+    top:425px;
+    z-index: 1;
+}
+
+.signupbanner-button:hover {
+    background-color: var(--theme-color-7);
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.4);
+    transform: scale(1.05);
+}

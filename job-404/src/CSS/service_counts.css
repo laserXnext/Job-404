@@ -1,0 +1,38 @@
+.data-box
+{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0 20px;
+    align-items: center;
+    height: 20vh;
+    gap: 25px;
+    margin-bottom: 25px;
+}
+.box
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 300px;
+    height: fit-content;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.box-heading
+{
+    font-size: 40px;
+    font-family: "Lilita One", sans-serif;
+    color: var(--theme-color-5);
+    text-align: center;
+}
+
+.box-text
+{
+    font-size: 20px;
+    font-family: "Comfortaa", sans-serif;
+    color: var(--theme-color-5);
+    text-align: center;
+}

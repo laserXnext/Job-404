@@ -1,0 +1,30 @@
+:root 
+{
+    --background-col: #043A3F;
+    --theme-color-1: #79D7BE;
+    --theme-color-2: #7AB2D3;
+    --theme-color-3:#f2f2f2;
+    --theme-color-4: #ffffff;
+    --theme-color-5: #1b1b1b;
+    --theme-color-6: #001A6E;
+    --theme-color-7: #074799;
+    --theme-color-8: #009990;
+    --background-img-signup: url(../assets/back_1.jpeg);
+    --background-img-login: url(../assets/back_2.jpeg);
+    --background-banner-1:url(../assets/back_3.png);
+}
+
+*
+{
+    margin:0%;
+    padding:0%;
+    font-family: sans-serif;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body
+{
+    height: 100vh;
+    width: 100%;
+}

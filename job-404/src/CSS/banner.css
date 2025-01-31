@@ -1,0 +1,49 @@
+
+.banner
+{
+    background-color: var(--theme-color-1);
+    background-image: var(--background-banner-1);
+    background-repeat:no-repeat;
+    background-position: center;
+    background-size: cover;
+    backdrop-filter: blur(5px);
+    position: relative;
+    margin: 2% 1%;
+    height: 500px;
+    width: 98%;
+    padding: 50px;
+    border-radius: 50px;
+    display: flex;
+}
+.banner-text
+{
+    margin: 0 50px;
+    display: flex;
+    color: var(--background-col);
+    flex-direction: column;
+    justify-content: center;
+}
+.banner h1
+{
+    font-size: 60px;
+    font-weight: 700;
+    font-family: "Playwrite AU SA", serif;
+    margin: 0 0 30px 0;
+}
+.banner p
+{
+
+    font-size: 30px;
+    font-weight: 500;
+    font-family: "Bangers", serif;
+    letter-spacing: 5px;
+    margin: 0;
+}
+.banner-img
+{
+    height: 360px;
+    width: 360px;
+    position: relative;
+    top: 0px;
+    right:70px;
+}

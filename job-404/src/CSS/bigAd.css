@@ -1,0 +1,133 @@
+.big-ad-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+}
+
+.big-ad-container {
+    background: var(--theme-color-4);
+    color: var(--background-col);
+    padding: 30px;
+    border-radius: 15px;
+    width: 95%;
+    max-width: 700px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.big-ad-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--theme-color-5);
+    padding-bottom: 10px;
+}
+
+.big-ad-header h2 {
+    font-family: "Comfortaa", sans-serif;
+    font-size: 28px;
+    color: var(--theme-color-5);
+    margin: 0;
+}
+
+.big-ad-header i {
+    font-size: 25px;
+    color: var(--theme-color-8);
+    cursor: pointer;
+    transition: transform 0.2s, color 0.2s;
+}
+
+.big-ad-header i:hover {
+    color: var(--background-col);
+    transform: scale(1.2);
+}
+
+.company-data, .course-data {
+    display: flex;
+    flex-direction: column;
+}
+
+.company-data,.course-data,
+.description-data {
+    margin-bottom: 20px;
+}
+
+.company-data p,
+.course-data p,
+.description-data p {
+    font-size: 18px;
+    font-family: "Comfortaa", sans-serif;
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+.company-data p,
+.course-data p {
+    background-color: var(--theme-color-1);
+    color: var(--theme-color-5);
+    padding: 8px 15px;
+    border-radius: 8px;
+    display: inline-block;
+}
+
+.company-data p strong,
+.course-data p strong,
+.description-data p strong {
+    font-size: 20px;
+}
+
+.description-data p span {
+    display: inline-block;
+    margin-top: 5px;
+    padding: 8px 15px;
+    min-width: 100%;
+    background-color: var(--theme-color-2);
+    color: var(--theme-color-5);
+    font-size: 20px;
+    border-radius: 8px;
+}
+
+.apply-link {
+    display: block;
+    background-color: var(--theme-color-8);
+    color: var(--theme-color-4);
+    text-align: center;
+    border: none;
+    border-radius: 15px;
+    padding: 15px 0;
+    margin: 20px auto 0;
+    font-size: 1.2rem;
+    font-family: "Lilita One", serif;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    width: 90%;
+    max-width: 300px;
+}
+
+.apply-link:hover {
+    background-color: var(--background-col);
+    text-decoration: none;
+    transform: translateY(-3px);
+}
