@@ -13,7 +13,7 @@ const PORT = 3000;
 
 app.use(cors({
   origin: "http://localhost:5173",
-  methods: ["GET", "POST"],
+  methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
 
@@ -67,6 +67,7 @@ app.post("/signupdata", (req, res) => {
     });
   });
 });
+
 
 // Resume Data Endpoint
 app.post("/resumedata", (req, res) => {
@@ -141,7 +142,10 @@ app.post("/logindata", (req, res) => {
   });
 });
 
-// Job Details Route
+//! get data section
+
+//? Job Details Route
+
 app.get("/api/jobsdata", (req, res) => {
   const { jobType, location, company, search } = req.query;
 
@@ -179,7 +183,8 @@ app.get("/api/jobsdata", (req, res) => {
   });
 });
 
-// Job Details by id Route
+//? Job Details by id Route
+
 app.get("/api/jobsdata/:id", (req, res) => {
   const jobId = req.params.id;
   const query = "SELECT * FROM jobs WHERE id = ?";
@@ -196,7 +201,8 @@ app.get("/api/jobsdata/:id", (req, res) => {
 });
 
 
-// Filter Options Route
+//? Filter Options Route
+
 app.get("/api/filter-options", (req, res) => {
   const queries = {
       jobTypes: "SELECT DISTINCT job_type FROM jobs",
@@ -227,7 +233,8 @@ app.get("/api/filter-options", (req, res) => {
       });
 });
 
-// Get all courses data
+//? Get all courses data
+
 app.get("/api/coursesdata", (req, res) => {
   const query = "SELECT id, title, provider, platform, duration, level FROM courses";
   db.query(query, (err, results) => {
@@ -240,7 +247,8 @@ app.get("/api/coursesdata", (req, res) => {
   });
 });
 
-// Get filter options for courses
+//? Get filter options for courses
+
 app.get("/api/courses-filter-options", (req, res) => {
   const queries = {
     providers: "SELECT DISTINCT provider FROM courses",
@@ -271,7 +279,8 @@ app.get("/api/courses-filter-options", (req, res) => {
     });
 });
 
-// Get course details by ID
+//? Get course details by ID
+
 app.get("/api/coursesdata/:id", (req, res) => {
   const courseId = req.params.id;
   const query = "SELECT * FROM courses WHERE id = ?";
@@ -287,7 +296,8 @@ app.get("/api/coursesdata/:id", (req, res) => {
   });
 });
 
-// get profile data by username
+//? get profile data by username
+
 app.get("/api/profiledata/:username", (req, res) => {
   const username = req.params.username;
   console.log("Fetching profile for:", username);
@@ -312,6 +322,271 @@ app.get("/api/profiledata/:username", (req, res) => {
   });
 });
 
+//? get user data
+
+app.get("/api/userdata", (req, res) => {
+  const query = "SELECT id,username,email,date_account_made FROM userinfo";
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send("An error occurred while fetching user data.");
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+
+//! delete section
+
+//? delete user data by id
+
+app.delete("/api/deleteuser/:id", (req, res) => {
+  const userId = req.params.id;
+
+  const getUsernameQuery = "SELECT username FROM users WHERE id = ?";
+  const deleteUserQuery = "DELETE FROM users WHERE id = ?";
+  const deleteResumeQuery = "DELETE FROM resumes WHERE username = ?";
+
+  db.query(getUsernameQuery, [userId], (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({message:"Error fetching user data."});
+    }
+    if (result.length === 0) {
+      return res.status(404).json({message:"User not found."});
+    }
+    const username = result[0].username;
+
+    db.query(deleteResumeQuery, [username], (err) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({message:"Error deleting resume data."});
+      }
+      db.query(deleteUserQuery, [userId], (err) => {
+        if (err) {
+          console.error(err);
+          return res.status(500).json({message:"Error deleting user."});
+        }
+        res.status(200).json({message:"User and associated resume deleted successfully."});
+      });
+    });
+  });
+});
+
+//? delete course data by id
+
+app.delete("/api/deletecourse/:id", (req, res) => {
+  const userId = req.params.id;
+  const query = "DELETE FROM courses WHERE id = ?";
+  db.query(query, [userId], (err, results) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({message:"An error occurred while deleting course data."});
+    } else {
+      res.status(200).json({ message: "Course deleted successfully" });
+    }
+  });
+});
+
+//? delete job data by id
+app.delete("/api/deletejob/:id", (req, res) => {
+  const userId = req.params.id;
+  const query = "DELETE FROM jobs WHERE id = ?";
+  db.query(query, [userId], (err, results) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({message:"An error occurred while deleting job data."});
+    } else {
+      res.status(200).json({message:"job deleted successfully"});
+    }
+  });
+});
+
+//!edit seection
+
+//? edit course data by id
+
+app.put("/api/editcourse/:id", (req, res) => {
+  const courseId = req.params.id;
+  const courseData = req.body;
+
+  const query = `
+    UPDATE courses 
+    SET title = ?, provider = ?, platform = ?, duration = ?, level = ?, description = ? , enrollment_link = ?
+    WHERE id = ?`;
+
+  const values = [
+    courseData.title,
+    courseData.provider,
+    courseData.platform,
+    courseData.duration,
+    courseData.level,
+    courseData.description,
+    courseData.enrollment_link,
+    courseId,
+  ];
+
+  db.query(query, values, (err) => {
+    if (err) {
+      console.error("Course edit error:", err);
+      return res.status(500).json({ error: "Failed to edit course" });
+    }
+    res.status(200).json({ message: "Course edited successfully" });
+  });
+});
+
+//? edit job data by id
+
+app.put("/api/editjob/:id", (req, res) => {
+  const jobId = req.params.id;
+  const jobData = req.body;
+
+  const query = `
+    UPDATE jobs 
+    SET title = ?, company = ?, location = ?, job_type = ?, description = ? , requirements = ?, salary_range = ?, application_link =?
+    WHERE id = ?`;
+
+  const values = [
+    jobData.title,
+    jobData.company,
+    jobData.location,
+    jobData.job_type,
+    jobData.description,
+    jobData.requirements,
+    jobData.salary_range,
+    jobData.application_link,
+    jobId,
+  ];
+
+  db.query(query, values, (err) => {
+    if (err) {
+      console.error("Job edit error:", err);
+      return res.status(500).json({ error: "Failed to edit job" });
+    }
+    res.status(200).json({ message: "Job edited successfully" });
+  });
+});
+
+//? edit user profile by username
+
+app.put("/api/edituser/:username", (req, res) => {
+  const userName = req.params.username;
+  const userData = req.body;
+
+  if (!userName) {
+    return res.status(400).json({ error: "Username is required" });
+  }
+
+  const query = `
+    UPDATE resumes 
+    SET firstname = ?, lastname = ?, email = ?, phone = ?, houseno = ?, street = ?, city = ?, education = ?, experience = ?, skills = ?
+    WHERE username = ?`;
+
+  const values = [
+    userData.firstname,
+    userData.lastname,
+    userData.email,
+    userData.phone,
+    userData.houseno,
+    userData.street,
+    userData.city,
+    userData.education,
+    userData.experience,
+    userData.skills,
+    userName,
+  ];
+
+  db.query(query, values, (err, result) => {
+    if (err) {
+      console.error("User edit error:", err);
+      return res.status(500).json({ error: "Failed to edit User" });
+    }
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    res.status(200).json({ message: "User edited successfully" });
+  });
+});
+
+//!Insert seection
+
+//? insert a job
+
+app.post("/api/insertjobdata", (req, res) => {
+  const jobData = req.body;
+  const query = `
+    INSERT INTO jobs 
+    (title, company, location, job_type, description, requirements, salary_range, application_link)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    ON DUPLICATE KEY UPDATE
+    title = VALUES(title),
+    company = VALUES(company),
+    location = VALUES(location),
+    job_type = VALUES(job_type),
+    description = VALUES(description),
+    requirements = VALUES(requirements),
+    salary_range = VALUES(salary_range),
+    application_link = VALUES(application_link);
+  `;
+
+  const values = [
+    jobData.title,
+    jobData.company,
+    jobData.location,
+    jobData.job_type,
+    jobData.description,
+    jobData.requirements,
+    jobData.salary_range,
+    jobData.application_link,
+  ];
+
+  db.query(query, values, (err) => {
+    if (err) {
+      console.error("Job save error:", err);
+      return res.status(500).json({ error: "Failed to save job" });
+    }
+    res.status(200).json({ message: "Job saved successfully" });
+  });
+});
+
+
+//? insert a course
+app.post("/api/insertcourse", (req, res) => {
+  const courseData = req.body;
+  const query = `
+    INSERT INTO courses 
+    (title, provider, platform, duration, level, description, enrollment_link, created_at)
+    VALUES (?, ?, ?, ?, ?, ?, ?, NOW())  
+    ON DUPLICATE KEY UPDATE 
+    title = VALUES(title),
+    provider = VALUES(provider),
+    platform = VALUES(platform),
+    duration = VALUES(duration),
+    level = VALUES(level),
+    description = VALUES(description),
+    enrollment_link = VALUES(enrollment_link),
+    created_at = NOW();
+`;
+  const values = [
+    courseData.title,
+    courseData.provider,
+    courseData.platform,
+    courseData.duration,
+    courseData.level,
+    courseData.description,
+    courseData.enrollment_link,
+  ];
+  db.query(query, values, (err) => {
+    if (err) {
+      console.error("Course save error:", err);
+      return res.status(500).json({ error: "Failed to save course" });
+    }
+    res.status(200).json({ message: "Course saved successfully" });
+  });
+});
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

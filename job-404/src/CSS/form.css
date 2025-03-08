@@ -21,7 +21,6 @@
   background-color: var(--theme-color-4);
   border-radius: 12px;
   padding: 2rem;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
   width: 100%;
   max-width: 600px;
   text-align: center;
@@ -129,7 +128,7 @@ textarea.expanded {
   justify-content: center;
   margin: 15px 0;
   font-size: 1rem;
-  color: #4b5563;
+  color: var(--theme-color-9);
   position: relative;
 }
 
@@ -196,6 +195,12 @@ textarea.expanded {
 .modal-content h3 {
   margin-bottom: 1rem;
   color: #1f2937;
+}
+
+.modal-content i {
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
 }
 
 .modal-content textarea {

@@ -9,6 +9,13 @@ const ResumeForm = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentField, setCurrentField] = useState("");
   const [formData, setFormData] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    phone: "",
+    houseno: "",
+    street: "",
+    city: "",
     education: "",
     experience: "",
     skills: "",
@@ -29,6 +36,45 @@ const ResumeForm = () => {
   const handleSave = (value) => {
     setFormData(prev => ({ ...prev, [currentField]: value }));
     setIsModalOpen(false);
+  };
+
+  const handleFileUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    
+    const uploadData = new FormData();
+    uploadData.append("file", file);
+
+    try {
+      const response = await fetch("http://localhost:5000/analyze_cv", {
+        method: "POST",
+        body: uploadData,
+      });
+
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to analyze CV");
+      }
+
+      // Populate form fields with analyzed data
+      setFormData({
+        firstname: data.name?.split(" ")[0] || "",
+        lastname: data.name?.split(" ")[1] || "",
+        email: data.email || "",
+        phone: data.phone || "",
+        houseno: data.address?.[0] || "",
+        street: data.address?.[1] || "",
+        city: data.address?.[2] || "",
+        education: Array.isArray(data.education) ? data.education.join(", ") : data.education || "",
+        experience: Array.isArray(data.experience) ? data.experience.join(", ") : data.experience || "",
+        skills: Array.isArray(data.skills) ? data.skills.join(", ") : data.skills || "",
+      });
+
+      toast.success("CV analyzed successfully!");
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -80,12 +126,16 @@ const ResumeForm = () => {
               type="text"
               name="firstname"
               placeholder="First Name"
+              value={formData.firstname}
+              onChange={(e) => setFormData({ ...formData, firstname: e.target.value })}
               required
             />
             <input
               type="text"
               name="lastname"
               placeholder="Last Name"
+              value={formData.lastname}
+              onChange={(e) => setFormData({ ...formData, lastname: e.target.value })}
               required
             />
           </div>
@@ -95,6 +145,8 @@ const ResumeForm = () => {
               type="email"
               name="email"
               placeholder="Email"
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               required
             />
           </div>
@@ -104,15 +156,38 @@ const ResumeForm = () => {
               type="tel"
               name="phone"
               placeholder="Phone"
+              value={formData.phone}
+              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
               limit="10"
               required
             />
           </div>
 
           <div className="form-address">
-            <input type="text" name="houseno" placeholder="House No" required />
-            <input type="text" name="street" placeholder="Street" required />
-            <input type="text" name="city" placeholder="City" required />
+            <input 
+              type="text" 
+              name="houseno" 
+              placeholder="House No" 
+              value={formData.houseno}
+              onChange={(e) => setFormData({ ...formData, houseno: e.target.value })}
+              required 
+            />
+            <input 
+              type="text" 
+              name="street" 
+              placeholder="Street" 
+              value={formData.street}
+              onChange={(e) => setFormData({ ...formData, street: e.target.value })}
+              required 
+            />
+            <input 
+              type="text" 
+              name="city" 
+              placeholder="City" 
+              value={formData.city}
+              onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+              required 
+            />
           </div>
 
           <div className="form-education">
@@ -149,6 +224,7 @@ const ResumeForm = () => {
           {isModalOpen && (
             <div className="modal-overlay">
               <div className="modal-content">
+                <i className="fi fi-rr-cross" onClick={() => setIsModalOpen(false)}></i>
                 <h3>{currentField.toUpperCase()}</h3>
                 <textarea
                   autoFocus
@@ -175,6 +251,18 @@ const ResumeForm = () => {
           <button className="btn submit" type="submit">
             Submit Resume
           </button>
+          <div className="form-file-upload">
+            <input
+              type="file"
+              id="file-upload"
+              name="file-upload"
+              accept=".pdf"
+              onChange={handleFileUpload}
+            />
+            <button type="button" className="btn upload-btn" onClick={handleFileUpload}>
+              Analyze CV
+            </button>
+          </div>
         </form>
       </div>
       <ToastContainer />

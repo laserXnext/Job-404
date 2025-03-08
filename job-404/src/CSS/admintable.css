@@ -1,0 +1,204 @@
+table {
+    border-radius: 10px;
+    border: 1px solid var(--theme-color-8);
+    padding: 10px;
+    margin: 20px 0;
+    color: var(--background-col);
+    font-size: 18px;
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--theme-color-3);
+    overflow: hidden;
+}
+
+thead tr th {
+    background-color: var(--theme-color-1);
+    color: var(--theme-color-5);
+    padding: 12px 20px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.table-id {
+    border-radius: 10px 0 0 0;
+}
+
+.table-action {
+    border-radius: 0 10px 0 0;
+    text-align: center;
+}
+
+tbody tr {
+    transition: background 0.3s ease;
+}
+
+tbody tr:hover {
+    background-color: var(--theme-color-2);
+}
+
+tbody tr td {
+    color: var(--theme-color-5);
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--theme-color-1);
+}
+
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.action-buttons i {
+    cursor: pointer;
+    font-size: 20px;
+    padding: 5px;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.action-buttons i:hover {
+    transform: scale(1.2);
+    color: var(--theme-color-6);
+}
+
+.toast-notify-delete {
+    text-align: center;
+}
+
+.toast-notify-delete p {
+    font-size: 16px;
+    margin-bottom: 12px;
+    font-family: "Comfortaa", cursive;
+}
+
+.toast-notify-delete button {
+    border: none;
+    padding: 8px 25px;
+    margin: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.toast-notify-delete button:first-of-type {
+    background-color: #ff4d4d;
+    color: white;
+}
+
+.toast-notify-delete button:first-of-type:hover {
+    background-color: #d93636;
+}
+
+.toast-notify-delete button:last-of-type {
+    background-color: #4CAF50;
+    /* Green */
+    color: white;
+}
+
+.toast-notify-delete button:last-of-type:hover {
+    background-color: #388E3C;
+}
+@media (max-width: 768px) {
+    table {
+        font-size: 16px;
+    }
+
+    thead tr th, tbody tr td {
+        padding: 10px;
+    }
+
+    .action-buttons i {
+        font-size: 18px;
+    }
+}
+
+.edit-course-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-course-content {
+    background: var(--theme-color-4);
+    color: var(--background-col);
+    padding: 20px;
+    border-radius: 25px;
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+}
+
+.close-button {
+    display: flex;
+    justify-self:end;
+    border: none;
+    background: transparent;
+    color: var(--background-col);
+    font-size: 35px;
+    cursor: pointer;
+}
+
+.add-job-button {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 5px;
+}
+
+.add-job-button h2 {
+    font-size: 20px;
+    font-family: "Comfortaa", cursive;
+}
+
+.add-job-button button {
+    font-size: 20px;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 5px;
+    font-family: "Comfortaa", cursive;
+    background-color: var(--theme-color-6);
+    color: var(--theme-color-4);
+    border: none;
+    display: flex;
+    flex-direction: row;
+}
+
+.add-job-button button:hover {
+    background-color: var(--theme-color-5);
+}
+
+.add-job-button button i {
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+}
+
+.edit-course-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.edit-course-content {
+    background: var(--theme-color-4);
+    color: var(--background-col);
+    padding: 20px;
+    border-radius: 25px;
+    position: relative;
+    width: fit-content;
+    max-width: 90%;
+    min-width: 300px;
+}

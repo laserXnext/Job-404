@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import "../CSS/miniprofile.css";
 
 const MiniProfile = ({ onClose }) => {
   const [profileDetails, setProfileDetails] = useState(null);
   const username = localStorage.getItem("username");
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchProfileDetails();
@@ -40,6 +42,10 @@ const MiniProfile = ({ onClose }) => {
     window.location.reload();
   };
 
+  const handleNavigate = () => {
+    navigate('/profile');
+  }
+
   return (
     <div className="mini-profile">
       <div className="profile-header">
@@ -54,7 +60,7 @@ const MiniProfile = ({ onClose }) => {
         </div>
       </div>
       <div className="profile-buttons">
-        <button className="extend">Extend <i className="fi fi-rr-arrow-up-right-from-square" /></button>
+        <button className="extend" onClick={handleNavigate}>Extend <i className="fi fi-rr-arrow-up-right-from-square" /></button>
         <button className="logout" onClick={handleLogout}>Logout <i className="fi fi-rr-exit-alt"></i></button>
       </div>
     </div>
