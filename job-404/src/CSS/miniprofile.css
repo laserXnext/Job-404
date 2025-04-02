@@ -50,12 +50,13 @@
 }
 
 .profile-names h2 {
-    font: 2.5rem "Mogra", sans-serif;
+    font: 2rem "Mogra", sans-serif;
     text-transform: uppercase;
+    width: 60%;
 }
 
 .profile-names p {
-    font: 1.25rem 'Comfortaa', sans-serif;;
+    font: 1.25rem 'Comfortaa', sans-serif;
 }
 
 .profile-buttons {
@@ -80,4 +81,3 @@
     background-color: var(--theme-color-3);
     color: var(--theme-color-5);
 }
-

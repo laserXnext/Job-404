@@ -1,0 +1,10 @@
+.admin-content {
+    margin-left: 250px;
+    padding: 20px;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.sidebar.collapsed + .admin-content {
+    margin-left: 80px;
+}
+
